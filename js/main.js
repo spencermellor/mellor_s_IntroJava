@@ -1,29 +1,33 @@
-// this is called a self-invoking anonymous function
-// also called a IIFE
+// this is a self-invoking anonymous function
+// also called an IIFE
 // also called a module (it's a pattern)
 
 (() => {
+  console.log('hello from JS!');
 
-	console.log('Hello from the JS World!');
+  // find the elements in the document
+  let toggleButton = document.querySelector(".switch-text"), 
+      myHeading = document.querySelector('h1'),
+      //svgImg = document.querySelector("#badge"),
+      allSVGs = document.querySelectorAll(".svg");
 
-	// find the elements in the document
-	let toggleButton = document.querySelector(".switch-text"), 
-		myHeading = document.querySelector('h1'),
-		svgImage = document.querySelector('#badge');
+  // this function should change the heading text
+  function changeText() {
+    myHeading.textContent = "What is up? I am script!";
+  }
 
-	// this function should change the header text
-	function changeText() {
-		myHeading.textContent = "What is up? I am feeling scripty!";
-	}
+  // this function should log the ID for each SVG to the console
+  function logSVG() {
+    console.log(this.id);
+  }
 
-	// this function should log the ID for each SVG to the console
-	function logSVG () {
-		console.log(this.id);
-	}
+  // things a user can do to make stuff happen on the page
+  toggleButton.addEventListener("click", changeText);
 
-	toggleButton.addEventListener("click", changeText);
-	svgImage.addEventListener("mouseover", logSVG);
+  //svgImg.addEventListener("click", logSVG);
+  //svgImg2.addEventListener("click", logSVG);
 
-	// document.querySelector('h1').textContent = "What is up? I am feeling scripty!"
+  allSVGs.forEach(item => item.addEventListener("click", logSVG));
 
+  //document.querySelector('h1').textContent = "What is up? I am script!";
 })();
